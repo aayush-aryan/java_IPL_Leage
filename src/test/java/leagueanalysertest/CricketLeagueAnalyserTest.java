@@ -39,7 +39,7 @@ public class CricketLeagueAnalyserTest {
         }
     }
     @Test
-    public void givenWrongFile_AsInputToTheFileLoader_ShouldThrowException() {
+    public void givenWrongFileAsInputToTheFileLoaderShouldThrowException() {
         try {
             leagueAnalyser.loadIplData(INCORRECT_FILE);
         } catch (CSVBuilderException e) {
@@ -47,23 +47,23 @@ public class CricketLeagueAnalyserTest {
         }
     }
     @Test
-    public void givenCricketLeagueCsvFileShouldReturnWhoHadBestStrikeRateWithSixAtFirstPosition() {
+    public void givenCricketLeagueCsvFileShouldReturnWhoHadBestAverageWithStrikeRateAtFirstPosition() {
         try {
             leagueAnalyser.loadIplData(CORRECTED_BATTING_CSV);
-            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnStrikeRateWithSix();
+            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnAverageWithStrikeRate();
             IplBatsmanDTO[] batsmenArray = new Gson().fromJson(sortBasedOnBattingAverage,IplBatsmanDTO[].class);
-            Assert.assertEquals("Ishant Sharma",batsmenArray[0].playerName);
+            Assert.assertEquals("MS Dhoni",batsmenArray[0].playerName);
         } catch (CSVBuilderException e) {
                 e.printStackTrace();
         }
     }
     @Test
-    public void givenCricketLeagueCsvFileShouldReturnWhoHadBestStrikeRateWithFourAtFirstPosition() {
+    public void givenCricketLeagueCsvFileShouldReturnWhoHadBestAverageWithStrikeRateAtSecondPosition() {
         try {
             leagueAnalyser.loadIplData(CORRECTED_BATTING_CSV);
-            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnStrikeRateWithFours();
-            IplBatsmanDTO[] batsmenArray = new Gson().fromJson(sortBasedOnBattingAverage, IplBatsmanDTO[].class);
-            Assert.assertEquals("Ishant Sharma",batsmenArray[0].playerName);
+            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnAverageWithStrikeRate();
+            IplBatsmanDTO[] batsmenArray = new Gson().fromJson(sortBasedOnBattingAverage,IplBatsmanDTO[].class);
+            Assert.assertEquals("David Warner",batsmenArray[1].playerName);
         } catch (CSVBuilderException e) {
             e.printStackTrace();
         }
