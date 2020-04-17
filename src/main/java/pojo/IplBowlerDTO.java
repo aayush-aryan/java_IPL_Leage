@@ -3,7 +3,7 @@ package pojo;
 import com.opencsv.bean.CsvBindByName;
 
 public class IplBowlerDTO {
-    @CsvBindByName(column = "POS", required = true)
+    @CsvBindByName(column = "POs", required = true)
     public int position;
 
     @CsvBindByName (column = "PLAYER", required = true)
@@ -42,7 +42,8 @@ public class IplBowlerDTO {
     @CsvBindByName(column = "5w", required = true)
     public double fiveWickets;
 
-    public IplBowlerDTO(String playerName, double averageRunsGiven, double bowlingStrikeRate, double economyRate, double fourWickets, double fiveWickets, int wicketsTaken, double oversBowled) {
+    public IplBowlerDTO(String playerName, double averageRunsGiven, double bowlingStrikeRate, double economyRate, double fourWickets,
+                        double fiveWickets, int wicketsTaken, double oversBowled) {
         this.playerName = playerName;
         this.wicketsTaken = wicketsTaken;
         this.averageRunsGiven = averageRunsGiven;

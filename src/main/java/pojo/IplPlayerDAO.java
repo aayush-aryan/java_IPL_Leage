@@ -5,6 +5,7 @@ import cricketleagueanalyser.CricketLeagueAnalyser;
 import java.util.Comparator;
 
 public class IplPlayerDAO {
+    public double averageRunsGiven;
     public String playerName;
     public int runsScored=1;
     public Double battingAverage =0.0;
@@ -19,10 +20,6 @@ public class IplPlayerDAO {
     public int wicketsTaken=1;
     public double bowler4Wickets=0;
     public int ballsBowled=999;
-    public double averageRunsGiven;
-    public double economyRate;
-    public double fourWickets;
-    public double fiveWickets;
     public double oversBowled;
     public IplPlayerDAO() {
     }
@@ -71,14 +68,16 @@ public class IplPlayerDAO {
            Comparator<IplPlayerDAO> runs = Comparator.comparing(iplBatsmanData -> iplBatsmanData.runsScored, Comparator.reverseOrder());
            return runs.thenComparing(iplBatsmanData -> iplBatsmanData.battingAverage, Comparator.reverseOrder());
        }
+       if (mode.equals(CricketLeagueAnalyser.SortingMode.BOWLING_AVG))
+           return Comparator.comparing(iplBatsmanData -> iplBatsmanData.bowlingAverage, Comparator.reverseOrder());
        return null;
    }
     public Object getIplDTO(CricketLeagueAnalyser.PlayerType playerType) {
         if (playerType.equals(CricketLeagueAnalyser.PlayerType.BATSMAN))
             return new IplBatsmanDTO(playerName, runsScored, battingAverage, battingStrikeRate, ballsFaced,fours, sixes);
         if (playerType.equals(CricketLeagueAnalyser.PlayerType.BOWLER)) {
-            return new IplBowlerDTO(playerName, averageRunsGiven, bowlingStrikeRate, economyRate, fourWickets,
-                                       fiveWickets, wicketsTaken, oversBowled);
+            return new IplBowlerDTO(playerName, bowlingAverage, bowlingStrikeRate, bowlerEconomy, bowler4Wickets,
+                    bowler5Wickets, wicketsTaken, oversBowled);
         }
         return null;
     }

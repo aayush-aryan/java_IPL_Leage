@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 public class CricketLeagueAnalyser {
     public enum SortingMode {BATTING_AVG,STRIKE_RATE,SIXES,FOURS,STRIKE_RATE_WITH_SIX,STRIKE_RATE_WITH_FOUR,
-                          AVG_WITH_STRIKE_RATE,RUNS_WITH_AVG}
+                          AVG_WITH_STRIKE_RATE,RUNS_WITH_AVG,BOWLING_AVG}
     Map<String, IplPlayerDAO> iplPlayerDAOMap = new HashMap<String, IplPlayerDAO>();
     public enum PlayerType {BATSMAN,BOWLER}
     private PlayerType playerType;
@@ -31,7 +31,7 @@ public class CricketLeagueAnalyser {
                 .collect(Collectors.toCollection(ArrayList::new));
         return new Gson().toJson(iplSortedData);
     }
-    public String sortBasedOnRunsWithAverage() throws CSVBuilderException {
-        return getSortedIplData(SortingMode.RUNS_WITH_AVG);
+    public String sortBasedOnBowlingAverage() throws CSVBuilderException {
+        return getSortedIplData(SortingMode.BOWLING_AVG);
     }
 }
