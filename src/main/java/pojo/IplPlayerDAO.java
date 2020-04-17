@@ -55,6 +55,14 @@ public class IplPlayerDAO {
            return Comparator.comparing(iplBatsmanData -> iplBatsmanData.sixes, Comparator.reverseOrder());
        if (mode.equals(CricketLeagueAnalyser.SortingMode.FOURS))
            return Comparator.comparing(iplBatsmanData -> iplBatsmanData.fours, Comparator.reverseOrder());
+       if (mode.equals(CricketLeagueAnalyser.SortingMode.STRIKE_RATE_WITH_SIX)) {
+           Comparator<IplPlayerDAO> avg = Comparator.comparing(iplBatsmanData -> iplBatsmanData.battingStrikeRate, Comparator.reverseOrder());
+           return avg.thenComparing(iplBatsmanData -> iplBatsmanData.sixes, Comparator.reverseOrder());
+       }
+       if (mode.equals(CricketLeagueAnalyser.SortingMode.STRIKE_RATE_WITH_FOUR)) {
+           Comparator<IplPlayerDAO> avg = Comparator.comparing(iplBatsmanData -> iplBatsmanData.battingStrikeRate, Comparator.reverseOrder());
+           return avg.thenComparing(iplBatsmanData -> iplBatsmanData.fours, Comparator.reverseOrder());
+       }
        return null;
    }
     public Object getIplDTO(CricketLeagueAnalyser.PlayerType playerType) {
