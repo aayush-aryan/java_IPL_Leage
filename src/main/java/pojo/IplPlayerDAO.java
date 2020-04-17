@@ -72,6 +72,16 @@ public class IplPlayerDAO {
            return Comparator.comparing(iplBatsmanData -> iplBatsmanData.bowlingAverage, Comparator.reverseOrder());
        if (mode.equals(CricketLeagueAnalyser.SortingMode.STRIKE_RATE_OF_BOWLER))
            return Comparator.comparing(iplBatsmanData -> iplBatsmanData.bowlingStrikeRate, Comparator.reverseOrder());
+       if (mode.equals(CricketLeagueAnalyser.SortingMode.ECONOMY_RATE))
+           return Comparator.comparing(iplBatsmanData -> iplBatsmanData.bowlerEconomy, Comparator.reverseOrder());
+       if (mode.equals(CricketLeagueAnalyser.SortingMode.SR_WITH_FIVE_WKT)) {
+           Comparator<IplPlayerDAO> sr = Comparator.comparing(iplBatsmanData -> iplBatsmanData.bowlingStrikeRate, Comparator.reverseOrder());
+           return sr.thenComparing(iplBatsmanData -> iplBatsmanData.bowler5Wickets, Comparator.reverseOrder());
+       }
+       if (mode.equals(CricketLeagueAnalyser.SortingMode.SR_WITH_FOUR_WKT)) {
+           Comparator<IplPlayerDAO> sr = Comparator.comparing(iplBatsmanData -> iplBatsmanData.bowlingStrikeRate, Comparator.reverseOrder());
+           return sr.thenComparing(iplBatsmanData -> iplBatsmanData.bowler4Wickets, Comparator.reverseOrder());
+       }
        return null;
    }
     public Object getIplDTO(CricketLeagueAnalyser.PlayerType playerType) {
