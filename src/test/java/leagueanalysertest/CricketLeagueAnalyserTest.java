@@ -49,10 +49,10 @@ public class CricketLeagueAnalyserTest {
         }
     }
     @Test
-    public void givenCricketLeagueCsvFileShouldReturnTopBowlingAveragePlayerListAtFirstPosition() {
+    public void givenCricketLeagueCsvFileShouldReturnTopStrikingRateOfBowlerAtFirstPosition() {
         try {
             leagueAnalyser.loadIplData(CORRECTED_BOWLING_CSV);
-            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnBowlingAverage();
+            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnStrikeRate();
             IplBatsmanDTO[] batsmenArray = new Gson().fromJson(sortBasedOnBattingAverage,IplBatsmanDTO[].class);
             Assert.assertEquals("Krishnappa Gowtham",batsmenArray[0].playerName);
         } catch (CSVBuilderException e) {
@@ -60,12 +60,12 @@ public class CricketLeagueAnalyserTest {
         }
     }
     @Test
-    public void givenCricketLeagueCsvFileShouldReturnTopBowlingAveragePlayerListAtSecondPosition() {
+    public void givenCricketLeagueCsvFileShouldReturnSecondTopStrikingRateOfBowlerAtSecondPosition() {
         try {
             leagueAnalyser.loadIplData(CORRECTED_BOWLING_CSV);
-            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnBowlingAverage();
+            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnStrikeRate();
             IplBowlerDTO[] batsmenArray = new Gson().fromJson(sortBasedOnBattingAverage, IplBowlerDTO[].class);
-            Assert.assertEquals("Tim Southee",batsmenArray[1].playerName);
+            Assert.assertEquals("Prasidh Krishna",batsmenArray[1].playerName);
         } catch (CSVBuilderException e) {
             e.printStackTrace();
         }
