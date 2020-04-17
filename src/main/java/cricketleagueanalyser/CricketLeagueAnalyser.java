@@ -8,7 +8,7 @@ import pojo.IplPlayerDAO;
 import java.util.*;
 import java.util.stream.Collectors;
 public class CricketLeagueAnalyser {
-    public enum SortingMode {BATTING_AVG,STRIKE_RATE }
+    public enum SortingMode {BATTING_AVG,STRIKE_RATE,SIXES,FOURS }
     Map<String, IplPlayerDAO> iplPlayerDAOMap = new HashMap<String, IplPlayerDAO>();
     public enum PlayerType {BATSMAN,BOWLER}
     private PlayerType playerType;
@@ -30,7 +30,10 @@ public class CricketLeagueAnalyser {
                 .collect(Collectors.toCollection(ArrayList::new));
         return new Gson().toJson(iplSortedData);
     }
-    public String sortBasedOnStrikeRate() throws CSVBuilderException {
-        return getSortedIplData(SortingMode.STRIKE_RATE);
+    public String sortBasedOnSixes() throws CSVBuilderException {
+        return getSortedIplData(SortingMode.SIXES);
+    }
+    public String sortBasedOnFours() throws CSVBuilderException {
+        return getSortedIplData(SortingMode.FOURS);
     }
 }
