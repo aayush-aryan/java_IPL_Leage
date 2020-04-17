@@ -6,19 +6,19 @@ import java.util.Comparator;
 
 public class IplPlayerDAO {
     public String playerName;
-    public int runsScored=0;
+    public int runsScored=1;
     public Double battingAverage =0.0;
     public Double battingStrikeRate=0.0;
     public int ballsFaced=0;
     public int fours=0;
     public int sixes=0;
-    public double bowlingAverage=0.0;
-    public double bowlingStrikeRate=0.0;
-    public double bowlerEconomy=0.0;
-    public double bowler5Wickets=0.0;
-    public int wicketsTaken=0;
+    public double bowlingAverage=99;
+    public double bowlingStrikeRate=99;
+    public double bowlerEconomy=99;
+    public double bowler5Wickets=0;
+    public int wicketsTaken=1;
     public double bowler4Wickets=0;
-    public int ballsBowled=0;
+    public int ballsBowled=999;
     public double averageRunsGiven;
     public double economyRate;
     public double fourWickets;
@@ -49,6 +49,8 @@ public class IplPlayerDAO {
    public static Comparator< ? super IplPlayerDAO> getSortComparator(CricketLeagueAnalyser.SortingMode mode){
        if (mode.equals(CricketLeagueAnalyser.SortingMode.BATTING_AVG))
            return  Comparator.comparing(iplBatsmanData -> iplBatsmanData.battingAverage, Comparator.reverseOrder());
+       if (mode.equals(CricketLeagueAnalyser.SortingMode.STRIKE_RATE))
+           return Comparator.comparing(iplBatsmanData -> iplBatsmanData.battingStrikeRate, Comparator.reverseOrder());
        return null;
    }
     public Object getIplDTO(CricketLeagueAnalyser.PlayerType playerType) {
