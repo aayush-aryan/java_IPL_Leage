@@ -70,6 +70,8 @@ public class IplPlayerDAO {
        }
        if (mode.equals(CricketLeagueAnalyser.SortingMode.BOWLING_AVG))
            return Comparator.comparing(iplBatsmanData -> iplBatsmanData.bowlingAverage, Comparator.reverseOrder());
+       if (mode.equals(CricketLeagueAnalyser.SortingMode.STRIKE_RATE_OF_BOWLER))
+           return Comparator.comparing(iplBatsmanData -> iplBatsmanData.bowlingStrikeRate, Comparator.reverseOrder());
        return null;
    }
     public Object getIplDTO(CricketLeagueAnalyser.PlayerType playerType) {
