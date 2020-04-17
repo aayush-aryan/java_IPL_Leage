@@ -23,7 +23,7 @@ public class CricketLeagueAnalyser {
     }
     public String getSortedIplData(SortingMode mode) throws CSVBuilderException {
         if (iplPlayerDAOMap == null || iplPlayerDAOMap.size() == 0)
-            throw new CSVBuilderException("No IPL Data",CSVBuilderException.ExceptionType.NO_IPL_DATA);
+            throw new CSVBuilderException("Not IPL Data",CSVBuilderException.ExceptionType.NO_IPL_DATA);
         ArrayList iplSortedData = iplPlayerDAOMap.values().stream()
                 .sorted(IplPlayerDAO.getSortComparator(mode))
                 .map(IplPlayerDAO  -> IplPlayerDAO.getIplDTO(playerType))
