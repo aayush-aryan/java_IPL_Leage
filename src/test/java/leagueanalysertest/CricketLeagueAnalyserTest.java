@@ -47,23 +47,23 @@ public class CricketLeagueAnalyserTest {
         }
     }
     @Test
-    public void givenCricketLeagueCsvFileShouldReturnTopBattingAverageListWithCorrectFirstPosition() {
+    public void givenCricketLeagueCsvFileShouldReturnTopBattingStrikeRateListWithCorrectFirstPosition() {
         try {
             leagueAnalyser.loadIplData(CORRECTED_BATTING_CSV);
-            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnBattingAverage();
+            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnStrikeRate();
             IplBatsmanDTO[] batsmenArray = new Gson().fromJson(sortBasedOnBattingAverage,IplBatsmanDTO[].class);
-            Assert.assertEquals("MS Dhoni",batsmenArray[0].playerName);
+            Assert.assertEquals("Ishant Sharma",batsmenArray[0].playerName);
         } catch (CSVBuilderException e) {
                 e.printStackTrace();
         }
     }
     @Test
-    public void givenCricketLeagueCsvFileShouldReturnTopBattingAverageListWithCorrectSecondPosition() {
+    public void givenCricketLeagueCsvFileShouldReturnTopBattingStrikeRateListWithCorrectSecondPosition() {
         try {
             leagueAnalyser.loadIplData(CORRECTED_BATTING_CSV);
-            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnBattingAverage();
+            String sortBasedOnBattingAverage = leagueAnalyser.sortBasedOnStrikeRate();
             IplBatsmanDTO[] batsmenArray = new Gson().fromJson(sortBasedOnBattingAverage, IplBatsmanDTO[].class);
-            Assert.assertEquals("David Warner",batsmenArray[1].playerName);
+            Assert.assertEquals("Andre Russell",batsmenArray[1].playerName);
         } catch (CSVBuilderException e) {
             e.printStackTrace();
         }
